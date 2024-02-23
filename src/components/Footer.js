@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import logo_white from '../img/logo-white.svg'
 import facebook from '../img/facebook.svg'
 import instagram from '../img/instagram.svg'
