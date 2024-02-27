@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery, fetchBasequery } from '@reduxjs/toolkit/quer
 
 
 export const apiSlice = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://photoreact-api.onrender.com/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://photoreact-api.onrender.com' }),
     tagTypes: ['Photo'],
     endpoints: builder => ({})
 })
