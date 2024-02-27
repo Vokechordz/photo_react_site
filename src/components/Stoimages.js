@@ -2,13 +2,28 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import PhotoContext from '../PhotoContext/PhotoContext'
 import arrow from '../img/arrow.svg'
-import api from '../api/photos'
+import { useGetPhotosQuery } from '../photosApiSlice'
 
 const Stoimages = () => {
-    const { photos }= useContext(PhotoContext)
-    
+    //const { photos }= useContext(PhotoContext)
+    const {
+      data: photos,
+      isLoading,
+      isSuccess,
+      isError,
+      error
+    }= useGetPhotosQuery()
+    const totalPhotos= photos?.entities
+    //console.log(totalPhotos)
+    let finalArr= []
 
-    const mapped=    photos.map((photo) => (
+    if (totalPhotos) {
+      finalArr = Object.values(totalPhotos)
+    }
+    console.log(finalArr)
+
+
+    const mapped= finalArr && finalArr.map((photo) => (
         <div key={photo.id} className='imagesdiv'>
             <img className='uploads' src={require(`../images/${photo.sku}.jpg`)} alt={photo.title} />
                 <div className="deets">
@@ -23,14 +38,15 @@ const Stoimages = () => {
         </div>
     ))
     
+    const content=  <div className='stoimages'>
+    {mapped}
+    </div>
+    if (!totalPhotos && !finalArr && isLoading ) content= <p>Loading</p>
+    
 
     
 
-  return (
-    <div className='stoimages'>
-     {mapped}
-    </div>
-  )
+  return content
 }
 
 export default Stoimages

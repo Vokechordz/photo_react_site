@@ -1,24 +1,9 @@
-import api from '../api/photos'
 import { createContext, useState, useEffect } from "react";
-import jsonData from '../data/photos.json'
 
 const PhotoContext= createContext({});
 
 export const PhotoProvider= ({children}) => {
-    useEffect(()=> {
-        const fetchPhotos= async () => {
-          try {
-            const response= await api.get('/photos')
-            if (response && response.data) setPhotos(response.data)
-          } catch (err) {
-          (err.response.data)
-          (err.response.status)
-          (err.response.headers)
-          }
-        }
-        
-        fetchPhotos();
-      }, [])
+   
     
     const[photos, setPhotos]= useState([])
     
