@@ -2714,3 +2714,11 @@ input:checked + .slider:before {
     left: -99999999999999px;
   }
 }
+
+
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
