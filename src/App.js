@@ -10,19 +10,25 @@ import { PhotoProvider } from './PhotoContext/PhotoContext';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ScaleLoader } from 'react-spinners';
 import PreLoader from './components/PreLoader';
+import { useGetPhotosQuery } from './photosApiSlice';
 
 
 
 function App() {
+  const {
+    data: photos,
+    isLoading,
+    isSuccess,
+    isError,
+    error
+  }= useGetPhotosQuery()
 
 
-  const [isLoading, setIsLoading]= useState(true)
-
-useEffect(()=> {
+/* useEffect(()=> {
   setTimeout(() => {
     setIsLoading(false)
   }, 2000);
-}, [])
+}, []) */
  
 if (isLoading) return <PreLoader />
 
@@ -31,7 +37,7 @@ const content= (
   <Header />
 <Routes>
   <Route path="/" element={<Layout/>}>
-    <Route index element={<Body/>} />
+    <Route index element={<Body photos={photos}/>} />
     <Route path="stories" element={<Stories/>} />
     <Route path="features" element={<Features/>} />
     <Route path="pricing" element={<Pricing/>} />

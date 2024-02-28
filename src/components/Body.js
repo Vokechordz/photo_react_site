@@ -12,15 +12,9 @@ import { useContext } from 'react'
 import PhotoContext from '../PhotoContext/PhotoContext'
 import { useGetPhotosQuery } from '../photosApiSlice'
 
-const Body = () => {
+const Body = ({ photos }) => {
     //const { photos }= useContext(PhotoContext)
-    const {
-        data: photos,
-        isLoading,
-        isSuccess,
-        isError,
-        error
-      }= useGetPhotosQuery()
+   
       const totalPhotos= photos?.entities
       //console.log(totalPhotos)
       let finalArr= []
